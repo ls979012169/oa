@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.ApplyDao">
+	<select id="findAll" resultType="Apply">
+		select * from apply
+	</select>
+	<select id="findByUid" resultType="Apply">
+		select * from apply where uid=#{uid}
+	</select>
+	<select id="findById" resultType="Apply">
+		select * from apply where id=#{id}
+	</select>
+	<select id="findBySid" resultType="Apply">
+		select * from apply where sid=#{sid}
+	</select>
+	<insert id="add">
+		insert into apply(uid,reason,type,s_date,q_date,z_date,pdate,sid) values(#{uid},#{reason},#{type},#{s_date},#{q_date},#{z_date},#{pdate},#{sid})
+	</insert>
+	<delete id="delete">
+		delete from apply where id=#{id}
+	</delete>
+	<delete id="deleteByEid">
+		delete from apply where uid=#{uid}
+	</delete>
+	<update id="update">
+		update apply set uid=#{uid},reason=#{reason},type=#{type},q_date=#{q_date},z_date=#{z_date},sid=#{sid},pdate=#{pdate} where id=#{id}
+	</update>
+</mapper>

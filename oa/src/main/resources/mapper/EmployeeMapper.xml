@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oa.dao.EmployeeDao">
+	<!-- 查询 -->
+	<select id="find" resultType="Employee">
+		select * from Employee where ename
+		=
+		#{ename} and password = #{password}
+	</select>
+	<!-- 添加 -->
+	<insert id="add">
+		insert into employee
+		(ename,sex,zid,bid,tel,date,password) value
+		(#{ename},#{sex},#{zid},#{bid},#{tel},#{date},#{password});
+	</insert>
+	<!-- 删除员工页面 -->
+	<delete id="delete">
+		delete from Employee where eid = #{eid}
+	</delete>
+	<!-- 更新员工 -->
+	<update id="update">
+		update Employee set ename = #{ename}, sex =
+		#{sex},
+		tel =
+		#{tel}, password = #{password} where eid = #{eid}
+	</update>
+	<!-- 根据员工名称查找 -->
+	<select id="findByUserName" resultType="Employee">
+		select * from Employee
+		where ename = #{ename}
+	</select>
+	<!-- 根据员工ID查找 -->
+	<select id="findById" resultType="Employee">
+		select * from Employee
+		where eid
+		= #{eid}
+	</select>
+	<!-- 查询出来所有的员工集合 ，除了管理员以外 -->
+	<select id="findUserList" resultType="Employee">
+		select * from Employee
+	</select>
+	<!-- 根据职位编号查询 -->
+	<select id="findByPid" resultType="Employee">
+		select * from Employee where
+		zid = #{zid}
+	</select>
+	<!-- 根据部门编号查询 -->
+	<select id="findByDid" resultType="Employee">
+		select * from Employee where
+		bid = #{bid}
+	</select>
+</mapper>

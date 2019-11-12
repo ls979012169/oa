@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.Gh_applyDao">
+
+	<insert id="addGh_apply">
+		insert into gh_apply
+		(id,apid,ghdatetime,sid,pdate)
+		value
+		(#{id},#{apid},#{ghdatetime},#{sid},#{pdate});
+	</insert>
+
+	<delete id="delGh_apply">
+		delete from gh_apply where id = #{id}
+	</delete>
+
+	<update id="changeState">
+		update gh_apply set sid = #{sid} where id =
+		#{id}
+	</update>
+
+	<select id="findAll" resultType="Gh_apply">
+		select * from gh_apply
+	</select>
+
+	<select id="findById" resultType="Gh_apply">
+		select * from gh_apply where
+		id
+		= #{id}
+	</select>
+
+	<select id="findByState" resultType="Gh_apply">
+		select * from gh_apply where
+		sid = #{sid}
+	</select>
+    
+    <update id="update">
+    update gh_apply set sid = #{sid},pdate = #{pdate} where id =
+		#{id}
+    </update>
+</mapper>

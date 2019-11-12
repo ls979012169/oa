@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.DailyDao">
+	<resultMap type="Daily" id="resultMap1">
+		<id column="did" property="did" />
+		<result column="eid" property="eid" />
+		<result column="wdef" property="wdef" />
+		<result column="wdate" property="wdate" />
+		<collection property="employee" ofType="Employee">
+			<id column="eid" property="eid" />
+			<result column="bid" property="bid" />
+			<association property="department" javaType="Department">
+				<id column="id" property="id" />
+			</association>
+		</collection>
+	</resultMap>
+	<!-- 增加一条日报信息 -->
+	<insert id="add">
+		insert into daily (eid,wdef,wdate) values
+		(#{eid},#{wdef},#{wdate})
+	</insert>
+	<!-- 根据部门id查询所有日报信息 -->
+	<select id="findByDepId" resultMap="resultMap1">
+		SELECT d.* FROM daily d JOIN
+		employee e ON d.eid=e.eid JOIN department b ON e.bid=b.id WHERE
+		b.id=#{id};
+	</select>
+	<!-- 根据日期查询当日所有日报信息 -->
+	<select id="findByListDate" resultType="Daily">
+		select * from daily where
+		wdate=#{wdate}
+	</select>
+	<!-- 根据日期查询自己的日报信息 -->
+	<select id="findDateOne" resultType="Daily">
+		select * from daily where
+		wdate =#{wdate} and eid =#{eid}
+	</select>
+	<!-- 根据员工eid查询日报信息 -->
+	<select id="findById" resultType="Daily">
+		select * from daily where eid
+		=#{eid}
+	</select>
+	<!-- 根据日报did查询日报信息 -->
+	<select id="findByDailyId" resultType="Daily">
+		select * from daily where
+		did=#{did}
+	</select>
+	<!-- 根据员工eid删除日报信息 -->
+	<delete id="delete">
+		delete from daily where eid=#{eid}
+	</delete>
+	<delete id="deleteById">
+		delete from daily where did=#{did}
+	</delete>
+	<!-- 更新日报信息 -->
+	<update id="update">
+		update daily set wdef=#{wdef},wdate=#{wdate} where
+		did=#{did}
+	</update>
+	<!-- 根据员工id查询日报信息 -->
+	<select id="findAll" resultType="Daily">
+		select * from daily
+	</select>
+</mapper>

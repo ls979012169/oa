@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.TaskDao">
+
+	<select id="findByEid" resultType="Task">
+		select * from task where
+		eid =
+		#{eid}
+	</select>
+
+	<select id="findByTid" resultType="Task">
+		select * from task where
+		tid=#{tid}
+	</select>
+
+	<select id="findAll" resultType="Task">
+		select * from task
+	</select>
+
+	<insert id="add">
+		insert into task (tid,eid,tdef,sdate,edate)
+		values(#{tid},#{eid},#{tdef},#{sdate},#{edate})
+	</insert>
+
+	<delete id="delete">
+		delete from task where tid=#{tid}
+	</delete>
+
+	<update id="update">
+		update task set eid = #{eid},tdef = #{tdef},edate =
+		#{edate} where tid = #{tid}
+	</update>
+</mapper>

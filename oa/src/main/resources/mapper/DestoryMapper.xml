@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.DestoryDao">
+	<select id="findAll" resultType="Destory">
+		select * from Destory
+	</select>
+	<insert id="insert">
+		insert into destory (iid,pcount,preason) value(#{iid},#{pcount},#{preason})
+	</insert>
+	<delete id="delete">
+		delete from Destory where pid = #{pid}
+	</delete>
+	<update id="update">
+		update destory set pcount = #{pcount} ,preason = #{preason} where iid = #{iid}
+	</update>
+	<select id="select" resultType="Destory">
+	select * from Destory where iid = #{iid}
+	</select>
+</mapper>
+  
+  
+  
+  

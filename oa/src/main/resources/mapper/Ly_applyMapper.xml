@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.Ly_applyDao">
+
+	<!-- <resultMap type="Ly_apply" id="resultMap1"> <id column="apid" property="apid" 
+		/> <result column="apnumber" property="apnumber" /> <result column="apdate" 
+		property="apdate" /> <result column="pdate" property="pdate" /> <association 
+		property="employee" select="com.oa.dao.EmployeeDao.findById" column="eid"> 
+		</association> <association property="state" select="com.oa.dao.StateDao.findById" 
+		column="id"> </association> </resultMap> -->
+
+	<insert id="addLy_apply">
+		insert into ly_apply
+		(eid,iid,sta_id,apnumber,apdate,pdate) value
+		(#{eid},#{iid},#{sta_id},#{apnumber},#{apdate},#{pdate});
+	</insert>
+
+	<delete id="delLy_apply">
+		delete from ly_apply where apid = #{apid}
+	</delete>
+
+	<update id="changeState">
+		update ly_apply set sta_id = #{sta_id} where apid =
+		#{apid}
+	</update>
+
+	<select id="findAll" resultType="Ly_apply">
+		select * from ly_apply
+	</select>
+
+	<select id="findById" resultType="Ly_apply">
+		select * from ly_apply where
+		apid = #{apid}
+	</select>
+
+	<select id="findByState" resultType="Ly_apply">
+		select * from ly_apply where
+		sta_id = #{sta_id}
+	</select>
+
+    <update id="update">
+    update ly_apply set sta_id = #{sta_id},pdate = #{pdate} where apid =
+		#{apid}
+    </update>
+</mapper>
+  

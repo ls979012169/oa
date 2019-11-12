@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.dao.PropertyDao">
+
+	<select id="findByName" resultType="Property">
+		select * from property where
+		iname = #{iname}
+	</select>
+
+	<select id="findById" resultType="Property">
+		select * from property where
+		iid = #{iid}
+	</select>
+
+	<select id="findAll" resultType="Property">
+		select * from property
+	</select>
+
+	<delete id="delete">
+		delete from property where iid = #{iid}
+	</delete>
+
+	<insert id="addProperty">
+		insert into property
+		(iname,iclass,itype,iunit,inumber) value
+		(#{iname},#{iclass},#{itype},#{iunit},#{inumber});
+	</insert>
+
+	<update id="updateNumber">
+		update property set inumber = #{inumber} where
+		iid=#{iid}
+	</update>
+	
+	<update id="update">
+	update property set inumber = #{inumber} where
+	iid=#{iid}
+	</update>
+
+</mapper>

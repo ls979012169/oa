@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.oa.dao.BaoXiaoDao">
+ <select id="find" resultType="Baoxiao">
+ select * from baoxiao
+ </select>
+ <select id="findById" resultType="Baoxiao">
+  select * from baoxiao where bid=#{bid}
+ </select>
+ <select id="findByBid" resultType="Baoxiao">
+ select * from baoxiao where id=#{id}
+ </select>
+ <select id="findlist" resultType="Baoxiao">
+  select * from baoxiao where uid=#{uid}
+ </select>
+ <select id="findBySid" resultType="Baoxiao">
+  select * from baoxiao where sid=#{sid}
+ </select>
+ <insert id="add">
+ insert into baoxiao (money,use) values (#{money},#{use})
+ </insert>
+<update id="update">
+ update baoxiao set bid=#{bid},money=#{money},uid=#{uid},sid=#{sid},`use`=#{use},pdate=#{pdate} where id=#{id}
+ </update>
+ <delete id="delete">
+ delete from baoxiao where id in
+  <foreach collection="array" item="id" open="(" separator="," close=")">
+   #{id}
+  </foreach>
+ </delete>
+ <delete id="deleteByUid">
+ delete from baoxiao where uid=#{uid}
+ </delete>
+ </mapper>

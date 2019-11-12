@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oa.dao.FileDao">
+	<!-- 查询1 -->
+	<select id="find1" resultType="File">
+		select * from File where id = #{id }
+	</select>
+	<!-- 查询2 -->
+	<select id="find2" resultType="File">
+		select * from File where atitle = #{atitle }
+	</select>
+	<!-- 添加 -->
+	<insert id="add">
+		insert into File
+		(atitle,eid,adept,adate,lian) value
+		(#{atitle},#{eid},#{adept},#{adate},#{lian});
+	</insert>
+	<!-- 删除文件页面 -->
+	<delete id="delete">
+		delete from File where id = #{id}
+	</delete>
+	<!-- 更新文件 -->
+	<update id="update">
+		update File set atitle = #{atitle}, adept =
+		#{adept},
+		adate =
+		#{adate} where id = #{id}
+	</update>
+	<!-- 下载文件 -->
+	<!-- 查询出来所有的文件集合 -->
+	<select id="findUserList" resultType="Employee">
+		select * from File where id!=1 order by id desc
+	</select>
+</mapper>
